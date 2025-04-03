@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shibutani Lab.</title>
+    <style>
+    /* 共通クラス */
+    .background-white {
+        background-color: white;
+    }
+    .box-shadow {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    /* ヘッダー */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding:3px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        max-width: 2000px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    }
+    .header-box {
+        display: flex;
+        flex-direction: row
+        align-items: center
+        justify-content: flex-start;
+        padding: 6px;
+        background-color: white /* ボックス背景色 */
+        border-radius: 8px; /* ボックスの角丸 */
+        max-width: 1200px; /* ボックスの幅制限 */
+        margin: auto; /* 中央揃え */
+    }
+
+    .header-box .logo {
+        width: 100px;
+        height: auto;
+        margin-right: 16px;
+    }
+
+    .header-box .title-container {
+        text-align: left;
+        flex: 1;
+    }
+
+    .header-box .main-title {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .header-box .subtitle {
+        font-size: 1em;
+        margin: 5px 0 0 0;
+        color: #333;
+        font-style: italic;
+        font-family: "Times New Roman", 游ゴシック;
+    }
+
+    .header-box .lab-name {
+        font-size: 1.7em;
+        font-weight: bold;
+        color: #111011;
+        margin-top: 5px;
+    }
+
+    /* ナビゲーションバー */
+    nav {
+        position: fixed;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background: linear-gradient(to bottom, #f8f8f8, #dcdcdc);
+        padding: 5px 0;
+        box-sizing: border-box;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 2px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #002244;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 10px 20px;
+        background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    nav ul li a:hover {
+        background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+        border-color: #808080;
+        text-decoration: underline;
+    }
+    .publication-menu {
+        position: relative;
+    }
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #f8f8f8;
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        padding: 0;
+        width: 159px;
+        text-align: center;
+        font-size: 1.1em;
+    }
+    .publication-menu:hover .submenu {
+        display: block;
+    }
+    .submenu li {
+        margin: 0;
+    }
+    .submenu li a {
+        display: block;
+        padding: 8px 15px;
+        font-size: 1em;
+        border: none;
+        border-radius: 0;
+        background: #f8f8f8;
+        white-space: nowrap;
+    }
+    .submenu li a:hover {
+        background: #f8f8f8;
+    }
+    .activity-menu {
+        position: relative;
+    }
+    .activity-menu:hover .submenu {
+        display: block;
+        width: 125px;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            margin-right: 0;
+        }
+        nav ul {
+            flex-direction: column;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+    }
+    /* メインコンテンツ */
+    body {
+        margin: 0;
+        padding: 20;
+        line-height: 1.4;
+        padding-left: 5%;
+        padding-top:200px;
+        font-family: "Roboto", 游ゴシック;
+        white-space: nowrap; /* 改行を防止 */
+        overflow-x: scroll; /* 横スクロールを許可 */
+        overflow-Y: scroll; /* 縦スクロールを許可 */
+        font-size: 1em;
+    }
+    /* Change font size and color of <h2> */
+h2 {
+    font-size: 2em;  /* Adjust font size */
+    color: #1E3A8A;  /* Change color (dark blue) */
+    text-decoration: underline;  /* Add underline */
+    text-decoration-style: double;  /* Make it double underline */
+}
+/* 段落内のテキストを折り返す */
+ ol{
+    white-space: normal;  /* テキストが折り返されるようにする */
+    word-wrap: break-word;  /* 長い単語を折り返し */
+    word-break: break-word; /* 単語が長い場合も折り返し */
+    max-width: 90%;  /* 親要素に合わせて幅を設定 */
+    list-style-position: outside;  /* 番号をリストの内側に配置 */
+    font-size: 1.3em;  /* Adjust font size */
+    font-family: Arial", MS ゴシック;
+}
+sup {
+        font-size: 0.8em; /* 上付き文字を少し小さく */
+        vertical-align: top; /* 上方向に揃える */
+    }
+    </style>
+</head>
+<body>
+<header>
+<div class="header-box">
+            <img src="{{ url_for('static', filename='KU Logo.jpg') }}" alt="金沢大学 医薬保健研究域のロゴ" class="logo">
+            <div class="title-container">
+                <div class="main-title">金沢大学医薬保健研究域保健学系 量子医療技術学講座</div>
+                <div class="subtitle">Department of Quantum Medical Technology, Institute of Medical, Pharmaceutical and Health Sciences, Kanazawa University</div>
+                <div class="lab-name">澁谷研究室(Shibutani Lab.)</div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('top') }}">Top</a></li>
+            <li><a href="/research">Research</a></li>
+            <li><a href="/members">Members</a></li>
+            <li class="publication-menu">
+                <a href="#">Publications</a>
+                <ul class="submenu">
+                    <li><a href="/publication/papers">Papers</a></li>
+                    <li><a href="/publication/reviews">Reviews</a></li>
+                    <li><a href="/publication/books">Books</a></li>
+                    <li><a href="/publication/presentations">Presentations</a></li>
+                </ul>
+            </li>
+            <li class="activity-menu">
+                <a href="#">Activities</a>
+                <ul class="submenu">
+                    <li><a href="/activity/history">History</a></li>
+                    <li><a href="/activity/graduates">Graduates</a></li>
+                    <li><a href="/activity/STOIC">STOIC</a></li>
+                </ul>
+            </li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/links">Links</a></li>
+        </ul>
+    </nav>
+    <h2>Reviews</h2>
+    <ol>
+        <li><u>澁谷孝行</u>，小野口昌久，米山寛人，小西貴広，中嶋憲一．Anger型SPECT-CT装置がもたらす高解像度心筋SPECT撮像技術．心臓核医学．2024; 26(1): 3-4.</li>
+        <li>中嶋憲一，<u>澁谷孝行</u>，齊藤晋太郎，米山寛人，小野口昌久．新しい画像再構成方法による定量的心筋SPECT: 心臓用xSPECTの可能性．映像情報Medical. 2023; 55(3): 35-40.</li>
+        <li><u>澁谷孝行</u>, 中嶋憲一, 米山寛人, 小西貴広, 小野口昌久．SwiftScan技術がもたらす低投与量・短時間収集．核医学技術. 2023; 43(2): 133-138. </li>
+        <li>Nakajima K, <u>Shibutani T</u>. Are nuclear medicine images quantified in 2D and 3D equally functional? J Nucl Cardiol. 2023; 30(5): 1968-1972. </li>
+        <li>Okuda K, Nakajima K, <u>Shibutani T</u>. Should Artifacts of the Inferior Wall Be Reduced Using　Image Processing?Ann Nucl Cardiol 2022;8(1):4-6. </li>
+        <li><u>澁谷孝行</u>，中嶋憲一，小野口昌久，齊藤晋太郎，米山寛人，小西貴広．新しい多焦点型コリメータを用いた高分解能脳SPECT画像．映像情報Medical. 2022; 54(10): 10-14. </li>
+        <li><u>澁谷孝行</u>．核医学編　3.　心筋ファントム．日本放射線技術学会誌．2022；78(5)： 513-519．</li>
+        <li><u>澁谷孝行</u>．心筋血流SPECT撮像の標準化に関するガイドラインの概要．心臓核医学．2022；24(1)：5-7．</li>
+        <li><u>澁谷孝行</u>．心筋血流SPECTにおける被ばく線量の現状と低線量収集・画像処理技術の活用．心臓核医学．2021；23(1)：3-4．</li>
+        <li><u>澁谷孝行</u>，小野口昌久，米山寛人，小西貴広．心筋SPECT標準化ファントムを用いたSwiftScanの短時間収集の適用．心臓核医学．2020；22(1)：9-10．</li>
+        <li>坪井邦仁，長木昭男，<u>澁谷孝行</u>，小野口昌久．D-SPECTにおける肥大型心筋症患者に対する最適な画像再構成法の検討．心臓核医学．2020；22(1)：6-7．</li>
+        <li>石原克，小野口昌久，谷口泰代，<u>澁谷孝行</u>．半導体ガンマカメラと従来型ガンマカメラを用いた標準データベースの違いによる心筋血流指標および虚血量指標の比較．心臓核医学．2019；21(1)：10-11</li>
+        <li><u>澁谷孝行</u>．核医学領域におけるImageJ の活用．日本放射線技術学会誌．2019：75(12)： 1477-1483．</li>
+        <li><u>澁谷孝行</u>，小野口昌久，米山寛人，小西貴広，中嶋憲一，絹谷清剛．LEHRSコリメータを用いた最新技術．GE today 2019；52：14-15．</li>
+        <li><u>澁谷孝行</u>, 小野口昌久．核医学における低投与量・高画質を実現した最新収集・画像処理技術．INNERVISION．2018；33(11): 21-23. </li>
+        <li>中嶋憲一，<u>澁谷孝行</u>，小野口昌久，奥田光一，米山寛人，松尾信郎，清水威志．IQ・SPECTによる心臓核医学IQ・SPECTによる心臓核医学. 2018:1-20. </li>
+        <li><u>澁谷孝行</u>．機器の日常点検日本放射線技術学会　近畿部会雑誌　2015；21(1)：87-90．</li>
+        <li>小野口昌久，小西貴広，<u>澁谷孝行</u>．画像処理・ソフトウェア技術の現状と展望．INNERVISION．2015；30(12)：58-60．</li>
+    </ol>
+    <h2>Proceeding</h2>
+    <ol>
+        <li><u>澁谷孝行</u>．心筋SPECT収集・処理の基礎と標準化へのアプローチ．核医学技術．2025；45（1）</li>
+        <li><u>澁谷孝行</u>．専門技師が知っておきたい心臓核医学技術．核医学技術．2022；42(1)：73-75．</li>
+        <li>Matsuo S, Onoguchi M, Mizokami A, Nakajima K, Mori H, Wakabayashi H, <u>Shibutani T</u>, Yoneyama H, Kinuya S, Kudo T. Imaging and dosimetry of Ra-223 in the treatment for bone metastasis in patients with castration-resistant prostate cancer. Ann Nucl Med and Mol Imaging. 2019; 32(1): 56-7. </li>
+        <li>Matsuo S, Mori H, Onoguchi M, <u>Shibutani T</u>, Okuda K, Wakabayashi H, Kinuya S, Nakajima K. Metabolic characteristics of Takotsubo Syndrome by BMIPP Imaging. Ann Nucl Med and Mol Imaging. 2019; 32(1): 54.</li>
+        <li><u>澁谷孝行</u>，小野口昌久，山田智紀，嘉味田浩輝，林祐樹，國下皓平，中島直，藤澤一朗．EMITファントムを用いた心筋SPECT収集カウントを考慮した最適処理条件の基礎的検討．日本放射線技術学会　近畿部会雑誌　2014；20(2)：94．</li>
+        <li>對間 博之，<u>澁谷孝行</u>，清水 敬二，花岡 宏平，神宮司 公二，櫻井 実，加藤 誠二，武田 悟，松田 恵雄，奥田 保男，竹花 一哉，奥 真也．核医学領域拡張検査コードの既存核医学検査マスタへの適用について．日本放射線技術学会近畿部会雑誌.2011；17(1)：119．</li>
+        <li>神宮司　公二，奥　真也，竹花　一哉，奥田　保男，松田　恵雄，對間　博之，櫻井　実，加藤　誠二，武田　悟，清水　敬二，花岡　宏平，<u>澁谷孝行</u>．日本核医学会JJ1017核医学領域コード検討ワーキンググループ中間報告．核医学技術．2010；30 予稿集．300-302．</li>
+        <li><u>澁谷孝行</u>，木村徹，山田智紀，土橋博子，増成豊和，安井和人，安永國廣．使用核種の違いによる固有均一性の比較検討．放射線防護分科会会誌．2009；29：38-39</li>
+        <li><u>澁谷孝行</u>．胸部回診撮影に関する検討．大公放技ニュース．2008；118：15-21．</li>        
+    </ol>
+    <div style="font-size: 1.2em;margin-bottom: 50px;">詳細は 
+        <a href="https://researchmap.jp/kanazawa_shibu/books_etc" target="_blank" style="font-size: 1.2em; margin-left: 5px;">Research map</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shibutani Lab.</title>
+    <style>
+    /* 共通クラス */
+    .background-white {
+        background-color: white;
+    }
+    .box-shadow {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    /* ヘッダー */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding:3px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        max-width: 2000px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    }
+    .header-box {
+        display: flex;
+        flex-direction: row
+        align-items: center
+        justify-content: flex-start;
+        padding: 6px;
+        background-color: white /* ボックス背景色 */
+        border-radius: 8px; /* ボックスの角丸 */
+        max-width: 1200px; /* ボックスの幅制限 */
+        margin: auto; /* 中央揃え */
+    }
+
+    .header-box .logo {
+        width: 100px;
+        height: auto;
+        margin-right: 16px;
+    }
+
+    .header-box .title-container {
+        text-align: left;
+        flex: 1;
+    }
+
+    .header-box .main-title {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .header-box .subtitle {
+        font-size: 1em;
+        margin: 5px 0 0 0;
+        color: #333;
+        font-style: italic;
+        font-family: "Times New Roman", 游ゴシック;
+    }
+
+    .header-box .lab-name {
+        font-size: 1.7em;
+        font-weight: bold;
+        color: #111011;
+        margin-top: 5px;
+    }
+
+    /* ナビゲーションバー */
+    nav {
+        position: fixed;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background: linear-gradient(to bottom, #f8f8f8, #dcdcdc);
+        padding: 5px 0;
+        box-sizing: border-box;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 2px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #002244;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 10px 20px;
+        background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    nav ul li a:hover {
+        background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+        border-color: #808080;
+        text-decoration: underline;
+    }
+    .publication-menu {
+        position: relative;
+    }
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #f8f8f8;
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        padding: 0;
+        width: 159px;
+        text-align: center;
+        font-size: 1.1em;
+    }
+    .publication-menu:hover .submenu {
+        display: block;
+    }
+    .submenu li {
+        margin: 0;
+    }
+    .submenu li a {
+        display: block;
+        padding: 8px 15px;
+        font-size: 1em;
+        border: none;
+        border-radius: 0;
+        background: #f8f8f8;
+        white-space: nowrap;
+    }
+    .submenu li a:hover {
+        background: #f8f8f8;
+    }
+    .activity-menu {
+        position: relative;
+    }
+    .activity-menu:hover .submenu {
+        display: block;
+        width: 125px;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            margin-right: 0;
+        }
+        nav ul {
+            flex-direction: column;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+    }
+    /* メインコンテンツ */
+    body {
+        margin: 0;
+        padding: 20;
+        line-height: 1.4;
+        padding-left: 5%;
+        padding-top:200px;
+        font-family: "Roboto", 游ゴシック;
+        white-space: nowrap; /* 改行を防止 */
+        overflow-x: scroll; /* 横スクロールを許可 */
+        overflow-Y: scroll; /* 縦スクロールを許可 */
+        font-size: 1em;
+    }
+    /* Change font size and color of <h2> */
+h2 {
+    font-size: 2em;  /* Adjust font size */
+    color: #1E3A8A;  /* Change color (dark blue) */
+    text-decoration: underline;  /* Add underline */
+    text-decoration-style: double;  /* Make it double underline */
+}
+/* 段落内のテキストを折り返す */
+ ol{
+    white-space: normal;  /* テキストが折り返されるようにする */
+    word-wrap: break-word;  /* 長い単語を折り返し */
+    word-break: break-word; /* 単語が長い場合も折り返し */
+    max-width: 90%;  /* 親要素に合わせて幅を設定 */
+    list-style-position: outside;  /* 番号をリストの内側に配置 */
+    font-size: 1.3em;  /* Adjust font size */
+    font-family: Arial", MS ゴシック;
+}
+sup {
+        font-size: 0.8em; /* 上付き文字を少し小さく */
+        vertical-align: top; /* 上方向に揃える */
+    }
+    </style>
+</head>
+<body>
+<header>
+<div class="header-box">
+            <img src="{{ url_for('static', filename='KU Logo.jpg') }}" alt="金沢大学 医薬保健研究域のロゴ" class="logo">
+            <div class="title-container">
+                <div class="main-title">金沢大学医薬保健研究域保健学系 量子医療技術学講座</div>
+                <div class="subtitle">Department of Quantum Medical Technology, Institute of Medical, Pharmaceutical and Health Sciences, Kanazawa University</div>
+                <div class="lab-name">澁谷研究室(Shibutani Lab.)</div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('top') }}">Top</a></li>
+            <li><a href="/research">Research</a></li>
+            <li><a href="/members">Members</a></li>
+            <li class="publication-menu">
+                <a href="#">Publications</a>
+                <ul class="submenu">
+                    <li><a href="/publication/papers">Papers</a></li>
+                    <li><a href="/publication/reviews">Reviews</a></li>
+                    <li><a href="/publication/books">Books</a></li>
+                    <li><a href="/publication/presentations">Presentations</a></li>
+                </ul>
+            </li>
+            <li class="activity-menu">
+                <a href="#">Activities</a>
+                <ul class="submenu">
+                    <li><a href="/activity/history">History</a></li>
+                    <li><a href="/activity/graduates">Graduates</a></li>
+                    <li><a href="/activity/STOIC">STOIC</a></li>
+                </ul>
+            </li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/links">Links</a></li>
+        </ul>
+    </nav>
+    <h2>書籍</h2>
+    <ol>
+        <li>絹谷清剛，若林大志（編著）<u>澁谷孝行</u>，他（著）新　核医学テキスト．中外医学社．東京．2023.</li>
+        <li>小野口昌久，川井恵一，絹谷清剛（編）<u>澁谷孝行</u>，他（著）．最新臨床検査学講座　放射性同位元素検査技術学　第2版．医歯薬出版株式会社（東京）．2023．</li>
+        <li>大西英雄，本村信篤，松友紀和（編著）<u>澁谷孝行</u>，他（著）．核医学検査技術学改訂4版．オーム社（東京）．2022</li>
+        <li>甲谷理温，坂井上之，高木卓，市川肇，三輪建太（編著）<u>澁谷孝行</u>，他（著）．放射線医療技術学叢書（38）「アーチファクト・アトラス（MRI，CT，SPECT，PET）」．日本放射線技術学会（京都）．2021</li>
+        <li>安部真治，小田敍弘，小倉泉，小山修司（編著），<u>澁谷孝行</u>，他（著）．新・医用放射線技術実験-臨床編-第4版．共立出版（東京）．2020．</li>
+        <li>小野口昌久，片渕哲朗，櫻井実，<u>澁谷孝行</u>，長木昭男，三輪建太（編著）．新・核医学技術総論　臨床編．山代出版（京都）．2020</li>
+        <li>小野口昌久，<u>澁谷孝行</u>，高橋康幸，細貝良行，三輪建太（編著）．新・核医学技術総論　技術編．山代出版（京都）．2020．</li>
+        <li>小野口昌久，川井恵一，絹谷清剛（編）<u>澁谷孝行</u>，他（著）．最新臨床検査学講座　放射性同位元素検査技術学．医歯薬出版株式会社（東京）．2018．</li>
+        <li>市川肇，小野口昌久，<u>澁谷孝行</u>，他（著）．初学者のための核医学実験入門．日本放射線技術学会（京都）．2016．</li>
+        <li>田中仁，山田勝彦，安部真治，小田敍弘（編著），<u>澁谷孝行</u>，他（著）．新・医用放射線技術実験-臨床編-第3版．共立出版（東京）．2016．</li>
+    </ol>
+    <h2>Guideline</h2>
+    <ol>
+        <li>對間博之，市川肇，小野間恵乃，久保和広，<u>澁谷孝行</u>，他．渡邉公憲放射性医薬品投与（核医学）における医療被ばくを評価するデータを電子的に記録するためのガイドライン．日本放射線技術学会．2023. <a href="https://www.jsrt.or.jp/data/pdf/etc/guideline-senryoukanri.pdf" " target="_blank"">Link</a></li>
+        <li>奥真也，竹花一哉，奥田保男，松田恵雄，神宮司公二，對間博之，櫻井実，加藤誠二，武田悟，清水敬二，花岡宏平，<u>澁谷孝行</u>，石川寧，的場義典，若槻好則．HIS, RIS, PACS, モダリティ間，予約, 会計, 照射録情報連携(JJ1017)指針 Ver.3.2.2010．<a href="https://www.jsrt.or.jp/97mi/content/jj1017/v3_4_2024/jj1017_v3_4_2024_guideline.pdf" " target="_blank"">Link</a></li>
+    </ol>
+    <div style="font-size: 1.2em;margin-bottom: 50px;">詳細は 
+        <a href="https://researchmap.jp/kanazawa_shibu/books_etc" target="_blank" style="font-size: 1.2em; margin-left: 5px;">Research map</a>
+    </div>
+</body>
+</html>

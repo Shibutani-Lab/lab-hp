@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shibutani Lab.</title>
+    <style>
+    /* 共通クラス */
+    .background-white {
+        background-color: white;
+    }
+    .box-shadow {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    /* ヘッダー */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding:3px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        max-width: 2000px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1)
+    }
+    .header-box {
+        display: flex;
+        flex-direction: row
+        align-items: center
+        justify-content: flex-start;
+        padding: 6px;
+        background-color: white /* ボックス背景色 */
+        border-radius: 8px; /* ボックスの角丸 */
+        max-width: 1200px; /* ボックスの幅制限 */
+        margin: auto; /* 中央揃え */
+    }
+
+    .header-box .logo {
+        width: 100px;
+        height: auto;
+        margin-right: 16px;
+    }
+
+    .header-box .title-container {
+        text-align: left;
+        flex: 1;
+    }
+
+    .header-box .main-title {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .header-box .subtitle {
+        font-size: 1em;
+        margin: 5px 0 0 0;
+        color: #333;
+        font-style: italic;
+        font-family: "Times New Roman", 游ゴシック;
+    }
+
+    .header-box .lab-name {
+        font-size: 1.7em;
+        font-weight: bold;
+        color: #111011;
+        margin-top: 5px;
+    }
+
+    /* ナビゲーションバー */
+    nav {
+        position: fixed;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background: linear-gradient(to bottom, #f8f8f8, #dcdcdc);
+        padding: 5px 0;
+        box-sizing: border-box;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 2px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #002244;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 10px 20px;
+        background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    nav ul li a:hover {
+        background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+        border-color: #808080;
+        text-decoration: underline;
+    }
+    .publication-menu {
+        position: relative;
+    }
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #f8f8f8;
+        border: 1px solid #b0b0b0;
+        border-radius: 4px;
+        padding: 0;
+        width: 159px;
+        text-align: center;
+        font-size: 1.1em;
+    }
+    .publication-menu:hover .submenu {
+        display: block;
+    }
+    .submenu li {
+        margin: 0;
+    }
+    .submenu li a {
+        display: block;
+        padding: 8px 15px;
+        font-size: 1em;
+        border: none;
+        border-radius: 0;
+        background: #f8f8f8;
+        white-space: nowrap;
+    }
+    .submenu li a:hover {
+        background: #f8f8f8;
+    }
+    .activity-menu {
+        position: relative;
+    }
+    .activity-menu:hover .submenu {
+        display: block;
+        width: 125px;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+        }
+        .logo {
+            margin-right: 0;
+        }
+        nav ul {
+            flex-direction: column;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+    }
+    /* メインコンテンツ */
+    body {
+        margin: 0;
+        padding: 20;
+        line-height: 1.4;
+        padding-left: 5%;
+        padding-top:200px;
+        font-family: "Roboto", 游ゴシック;
+        white-space: nowrap; /* 改行を防止 */
+        overflow-x: scroll; /* 横スクロールを許可 */
+        overflow-Y: scroll; /* 縦スクロールを許可 */
+        font-size: 1em;
+    }
+    /* Change font size and color of <h2> */
+h2 {
+    font-size: 2em;  /* Adjust font size */
+    color: #1E3A8A;  /* Change color (dark blue) */
+    text-decoration: underline;  /* Add underline */
+    text-decoration-style: double;  /* Make it double underline */
+}
+/* 段落内のテキストを折り返す */
+ ol{
+    white-space: normal;  /* テキストが折り返されるようにする */
+    word-wrap: break-word;  /* 長い単語を折り返し */
+    word-break: break-word; /* 単語が長い場合も折り返し */
+    max-width: 90%;  /* 親要素に合わせて幅を設定 */
+    list-style-position: outside;  /* 番号をリストの内側に配置 */
+    font-size: 1.3em;  /* Adjust font size */
+    font-family: Arial", MS ゴシック;
+}
+sup {
+        font-size: 0.8em; /* 上付き文字を少し小さく */
+        vertical-align: top; /* 上方向に揃える */
+    }
+    </style>
+</head>
+<body>
+<header>
+<div class="header-box">
+            <img src="{{ url_for('static', filename='KU Logo.jpg') }}" alt="金沢大学 医薬保健研究域のロゴ" class="logo">
+            <div class="title-container">
+                <div class="main-title">金沢大学医薬保健研究域保健学系 量子医療技術学講座</div>
+                <div class="subtitle">Department of Quantum Medical Technology, Institute of Medical, Pharmaceutical and Health Sciences, Kanazawa University</div>
+                <div class="lab-name">澁谷研究室(Shibutani Lab.)</div>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('top') }}">Top</a></li>
+            <li><a href="/research">Research</a></li>
+            <li><a href="/members">Members</a></li>
+            <li class="publication-menu">
+                <a href="#">Publications</a>
+                <ul class="submenu">
+                    <li><a href="/publication/papers">Papers</a></li>
+                    <li><a href="/publication/reviews">Reviews</a></li>
+                    <li><a href="/publication/books">Books</a></li>
+                    <li><a href="/publication/presentations">Presentations</a></li>
+                </ul>
+            </li>
+            <li class="activity-menu">
+                <a href="#">Activities</a>
+                <ul class="submenu">
+                    <li><a href="/activity/history">History</a></li>
+                    <li><a href="/activity/graduates">Graduates</a></li>
+                    <li><a href="/activity/STOIC">STOIC</a></li>
+                </ul>
+            </li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/links">Links</a></li>
+        </ul>
+    </nav>
+    <h2>査読あり欧文論文（計76編　筆頭15編 *責任著者1編） </h2>
+    <ol>
+        <li>Ichikawa H, <u>Shibutani T</u>, Kato T, Banno T, Terabe M, Shimada H.Improvement of Anatomic Alignment and Image Quality Using a Respiratory Motion Reduction Block in Oncologic PET/CT. J Nucl Med Technol. 2025 Mar 4</li>
+        <li>Ichikawa H, Kato T, <u>Shibutani T</u>, Terabe M, Shimada H. Impact of a novel respiratory motion reduction block for myocardial perfusion SPECT image quality: a phantom study. Radiol Phys Technol. 2025 Feb 18.</li>
+        <li>Sugiura A, <u>Shibutani T</u>, Onoguchi M, Nagaki A, Tsuboi K, Ito T, Ichikawa H. Relationship between physical parameters and visual analysis for assessment of image quality: a multi-center and multi-vendor phantom study in brain SPECT. Asia Ocean J Nucl Med Biol. 2025; 13(1): 42-52.</li>
+        <li>Saito S, Nakajima K, Komatsu J, <u>Shibutani T</u>, Wakabayashi H, Mori H, Takata A, Ono K, Kinuya S. Absolute quantitation of sympathetic nerve activity using [<sup>123</sup>I] metaiodobenzylguanidine SPECT-CT in neurology. EJNMMI Rep. 2024 Jun 1;8(1):15.</li>
+        <li>Ichikawa H, Kato T, Kondo H, Shimada H, <u>Shibutani T</u>, Onoguchi M. Efficacy of a Novel Respiratory Motion Reduction Block in Reducing Motion Artifact on Myocardial Perfusion Single-Photon Emission Computed Tomography. Cureus. 2024;16(5): e60656. (JIF: 1.0)</li>
+        <li>Fukuchi K, <u>Shibutani T</u>, Terakawa Y, Nouno Y, Tateishi E, Onoguchi M, Fukuda T. Image quality of cardiac SiPM-PET/CT using an extremely low birth weight infant phantom. J Nucl Med Technol. 2024 in press (JIF: 1.3)</li>
+        <li>Murata T, Hashimoto T, Onoguchi M, <u>Shibutani T</u>, Iimori T, Sawada K, Umezawa T, Masuda Y, Uno T. Verification of image quality improvement of low-count bone scintigraphy using deep learning. Radiol Phys Technol. 2024; 17(1): 269-279. (JIF: 1.6)</li>
+        <li><u>Shibutani T</u>, Konishi T, Ichikawa H, Onoguchi M, Yoneyama H, Ito T, Okuda K, Nakajima K. Detectability of cold tumors by xSPECT Bone technology compared with hot tumors: a supine phantom study. Phys Eng Sci Med. 2024; 47(1): 287-294. (JIF: 4.4)</li>
+        <li><u>Shibutani T</u>, Onoguchi M, Kanno T, Kinuya S. Influence of spill-over for <sup>99m</sup>Tc images and the effect of scatter correction for dual-isotope simultaneous acquisition with <sup>99m</sup>Tc and <sup>18</sup>F using small-animal SPECT-PET/CT system. Phys Eng Sci Med. 2024; 47(1): 135-142. (JIF: 4.4)</li>
+        <li>Nakajima K, <u>Shibutani T</u>, Massanes F, Shimizu T, Yoshida S, Onoguchi M, Kinuya S, Vija AH. Myocardial perfusion imaging with retrospective gating and integrated correction of attenuation, scatter, respiration, motion, and arrhythmia. J Nucl Cardiol. 2023; 30(6): 2773-2789. (JIF: 2.4)</li>
+        <li>Saito S, Nakajima K, <u>Shibutani T</u>, Wakabayashi H, Yoneyama H, Konishi T, Mori H, Takata A, Kinuya S. Three-Dimensional Heart Segmentation and Absolute Quantitation of Cardiac <sup>123</sup>I-metaiodobenzylguanidine Sympathetic Imaging Using SPECT/CT. Ann Nucl Cardiol. 2023; 9: 61-67.</li>
+        <li>Yamashita S, Nakajima K, Okuda K, Yamamoto H, <u>Shibutani T</u>, Yoneyama T, Tsuji S, Yokoyama K. Phantom-Based Standardization Method for <sup>123</sup> I-meta-iodobenzylguanidine Heart-to-Mediastinum Ratio Validated by D-SPECT Versus Anger Camera. Ann Nucl Cardiol. 2023; 9: 85-90.</li>
+        <li>Kato T, Ichikawa H, <u>Shibutani T</u>, Kita A, Watanabe M, Tada H, Sugiura A. A novel objective method for discriminating pathological and physiological colorectal uptake in the lower abdominal region using whole-body dynamic <sup>18</sup>F-FDG-PET. Ann Nucl Med. 2023; 37: 561-571. (JIF: 2.6)</li>
+        <li>Hiraki H, Ito T, Onoguchi M, Tsuchikame H, Shishido M, Maeno T, <u>Shibutani T </u>, Sanada H. Evaluation of Collimators in a High-Resolution, Whole-Body SPECT/CT Device with a Dual-Head Cadmium-Zinc-Telluride Detector for 123I-FP-CIT SPECT. J Nucl Med Technol. 2023; 51: 227-234. (JIF: 1.3)</li>
+        <li>Ichikawa H, <u>Shibutani T</u>, Matsutake Y, Kato T, Ikematsu R, Higashi R, Kamiya T, Shimada H, Onoguchi M. Comparison of the detectability of hot lesions on bone SPECT using six state-of-the-art SPECT/CT systems: a multicenter phantom study to optimize reconstruction parameters. Phys Eng Sci Med. 2023; 46: 839-849. (JIF: 7.099)</li>
+        <li>Ichikawa H, Shibutani T, Shimada H, Okuda K, Kato T, Nosaka H, Nagaki A, Onoguchi M. Feasibility of using counts-per-volume approach with a new SPECT phantom to optimize the relationship between administered dose and acquisition time. Radiol Phys Technol. 2023; 16: 244-253.</li>
+        <li>Murata T, Hayashi Y, Onoguchi M, <u>Shibutani T</u>, Iimori T, Sawada K, Umezawa T, Masuda Y, Uno T. Optimization of the attenuation coefficient for Chang's attenuation correction in <sup>123</sup>I brain perfusion single-photon emission computed tomography. J Nucl Med Technol. 2023; 51: 49-56. </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Kanno T, Wakabayashi H, Hiromasa T, Kinuya S. Development of a novel small-animal myocardial phantom can evaluate the image quality of dual-isotope simultaneous acquisition (DISA). Ann Nucl Med. 2022; 36: 1031-1038. (JIF: 2.258) </li>
+        <li>Ichikawa H, <u>Shibutani T</u>, Onoguchi M, Taniguchi Y. New index to assess the extent of bone disease in patients with prostate cancer using SPECT/CT. Ann Nucl Med. 2022; 36: 941-950. (JIF: 2.258) </li>
+        <li>Tatsuno K, Okuda K, Nakajima K, Saito H, <u>Shibutani T</u>, Onoguchi M, Takahashi T, Mochizuki T, Watanabe N, Matoba M. Normal and range value evaluations using Heart Risk View-Function based on the Japanese Society of Nuclear Medicine Working Group database. Ann Nucl Cardiol. 2022; 8: 51-6. </li>
+        <li>Sugiura A, Onoguchi M, <u>Shibutani T</u>, Kouno Y. Influence of minimum counts in brain perfusion SPECT: phantom and clinical studies. J Nucl Med Technol. 2022; 50: 342-347. </li>
+        <li>Tsuboi K, Onoguchi M, <u>Shibutani T</u>, Nagaki A, Tsukamoto K. Effect of Different Lung Material in One-Design Cardiac Phantom on Myocardial SPECT Images. Jpn J Nucl Med Technol. 2022; 42: 163-170. </li>
+        <li>Ichikawa H, Miyaji N, Onoguchi M, <u>Shibutani T</u>, Nagaki A, Kato T, Shimada H. Feasibility of ultra-high-speed acquisition in xSPECT bone algorithm: a phantom study with advanced bone SPECT-specific phantom. Ann Nucl Med. 2022; 36: 183-190. (JIF: 2.668) </li>
+        <li>Yoneyama H, Nakajima K, Taki J, Wakabayashi H, Konishi T, <u>Shibutani T</u>, Okuda K, Onoguchi M. Comparison of Myocardial Ischemia Detection Between Semiconductor and Conventional Anger-type Three-detector SPECT. Ann Nucl Cardiol. 2021; 7: 49-56. (JIF: 2.258) </li>
+        <li>Nakaya K, Onoguchi M, Muto H, Takahashi Y, Tsushima H, Kikuchi A, <u>Shibutani T</u>, Matsuura K, Yasuda E. Changing methods of education during a pandemic: questionnaire survey about examinations for nuclear medicine technology at educational institutions in Japan. J Nucl Med Technol. 2021; 50: 60-65. </li>
+        <li>Ichikawa H, Onoguchi M, <u>Shibutani T</u>, Kato T, Ito T, Shimada H. Optimization of cross-calibration factor for quantitative bone SPECT without attenuation and scatter correction in the lumbar spine: head-to-head comparison with attenuation and scatter correction. Nucl Med Commun. 2021; 42: 1404-1416. (JIF: 1.69) </li>
+        <li>Kita A, Okazawa H, Sugimoto K, Kaido R, Kosaka N, <u>Shibutani T</u>, Onoguchi M, Kidoya E, Kimura H. Acquisition count dependence of the specific binding ratio in <sup>123</sup>I-FP-CIT SPECT. Ann Nucl Med. 2021; 35: 1271-1278.(JIF: 2.668)</li>
+        <li>Ito T, Tsuchikame H, Ichikawa H, Onoguchi M, Okuda K, <u>Shibutani T</u>, Yokotsuka N, Tomizawa H. Verification of phantom accuracy using a Monte Carlo simulation: bone scintigraphy chest phantom. Radiol Phys Technol. 2021; 14: 336-344. </li>
+        <li>Ishihara M, Kato Y, Onoguchi M, <u>Shibutani T</u>. An alternative method for radioactivity measurement in quantitative bone SPECT/CT imaging. Science Progress 2021; 104(3): 1-13. (JIF: 2.774) </li>
+        <li>Ichikawa H, Kawakami K, Onoguchi M, <u>Shibutani T</u>, Nagatake K, Hosoya T, Ito T, Kato T, Tsuchikame H, Shimada H. Automatic quantification package (Hone Graph) for phantom-based image quality assessment in bone SPECT: computerized automatic classification of detectability. Ann Nucl Med. 2021; 35: 937-946. (JIF: 2.607) </li>
+        <li>Tsuboi K, Nagaki A, <u>Shibutani T</u>, Kawakami Y, Onoguchi M. The setting of heartbeat acceptance windows on gated myocardial perfusion single-photon emission computed tomography using CZT camera: effect of left ventricular functional parameters in patients with arrhythmia. Nucl Med Commun. 2021; 42: 1005-1010. (JIF: 1.334) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Yoneyama H, Konishi T, Nakajima K. Performance of SwiftScan planar and SPECT technology using low-energy high-resolution and sensitivity collimator compared with Siemens SPECT system. Nucl Med Commun. 2021; 42: 732-737. (JIF: 1.334) </li>
+        <li>Ichikawa H, Kato T, Miwa K, <u>Shibutani T</u>, Okuda K, Nagaki A, Tushima H, Onoguchi M. Current state of oncologic <sup>18</sup>F-FDG PET/CT in Japan: A nationwide survey. Asia Ocean J Nucl Med Biol. 2021; 9:158-166. </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Naoi Y, Yoneyama H, Konishi T, Tatami R, Nakajima K. The usefulness of SwiftScan technology for bone scintigraphy using a novel anthropomorphic phantom. Sci Rep. 2021; 11: 2644. (JIF: 3.998) </li>
+        <li>Konishi T, <u>Shibutani T*</u>, Okuda K, Yoneyama H, Moribe R, Onoguchi M, Nakajima K, Kinuya S. Metal artifact reduction for improving quantitative SPECT/CT imaging. Ann Nucl Med. 2021; 35(3): 291-298. (JIF: 2.607) </li>
+        <li>Ito T, Matsusaka Y, Onoguchi M, Ichikawa H, Okuda K, <u>Shibutani T</u>, Shishido M, Sato K. Experimental evaluation of the GE NM/CT 870 CZT clinical SPECT system equipped with WEHR and MEHRS collimator. J Appl Clin Med Phys. 2021; 22: 165-177. (JIF: 1.679) </li>
+        <li>Hoffmann JV, Janssen JP, Kanno T, <u>Shibutani T</u>, Onoguchi M, Lapa C, Grunz JP, Buck AK, Higuchi T. Performance evaluation of fifth-generation ultra-high-resolution SPECT system with two stationary detectors and multi-pinhole imaging. EJNMMI Phys. 2020; 7: 64. (JIF: 2.574) </li>
+        <li>Tuboi K, Onoguchi M, Sugimoto M, <u>Shibutani T</u>, Nagaki A, Kikuchi A. Prerequisite for projection data and reconstruction not to cause truncation artifacts in myocardial perfusion single- photon emission Computed tomography: Phantom study. Singapore J Cardiol 2020; 1: 82-89. </li>
+        <li>Ito T, Onoguchi M, Okuda K, <u>Shibutani T</u>. Study of novel deformable image registration in myocardial perfusion single-photon emission computed tomography. Nucl Med Commun. 2020; 41: 196-205. (JIF: 1.334) </li>
+        <li>Ichikawa H, Miwa K, Okuda K, <u>Shibutani T</u>, Kato T, Nagaki A, Tsushima H, Onoguchi M. Current state of bone scintigraphy protocols and practice in Japan. Asia Ocean J Nucl Med Biol. 2020; 8: 116-122. </li>
+        <li><u>Shibutani T</u>, Nakajima K, Yoneyama H, Konishi T, Okuda K, Onoguchi M, Kinuya S. The utility of heart-to-mediastinum ratio using a planar image created from IQ-SPECT with Iodine-123 meta-iodobenzylguanidine. J Nucl Cardiol. 2021; 28: 2569-2577. (JIF: 4.112) </li>
+        <li>Ishihara M, Onoguchi M, <u>Shibutani T</u>. Accuracy of washout rate analysis for thallium-201 single-photon emission computed tomography myocardial perfusion imaging using cadmium zinc telluride detectors: A phantom study. JRSM Cardiovasc Dis 2020; 9: 1-5. </li>
+        <li>Hiromasa T, Taki J, Wakabayashi H, Inaki A, Okuda K, <u>Shibutani T</u>, Shiba K, Kinuya S. Serial examination of cardiac function and perfusion in growing rats using SPECT/CT for small animals. Sci Rep. 2020; 10: 160. (JIF: 4.011) </li>
+        <li><u>Shibutani T</u>, Okuda K, Ichikawa H, Kato T, Miwa K, Tsushima H, Onoguchi M, Nagaki A. Imaging technology for myocardial perfusion single-photon emission computed tomography 2018 in Japan. Jpn J Radiol. 2020; 38(3): 274-282. (JIF: 1.5) </li>
+        <li>Okuda K, Nakajima K, Yoneyama H, <u>Shibutani T</u>, Onoguchi M, Matsuo S, Hashimoto M, Kinuya S. Impact of iterative reconstruction with resolution recovery in myocardial perfusion SPECT: phantom and clinical studies. Sci Rep. 2019; 9: 19618. (JIF: 4.011) </li>
+        <li>Nakamura M, Onoguchi M, <u>Shibutani T</u>. Prediction of Long-term Cardiac Events by <sup>123</sup>I-metaIodobenzylguanidine Imaging after acute Myocardial Infarction and Reperfusion Therapy. Asia Ocean J Nucl Med Biol. 2019; 7:121-128. </li>
+        <li>Ito T, Onoguchi M, Ogata Y, Matsusaka Y, <u>Shibutani T</u>. Evaluation of edge-preserving and noise-reducing effects using the nonlinear diffusion method in bone single-photon emission computed tomography. Nucl Med Commun. 2019;40: 693-702. (JIF: 1.495) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Yoneyama H, Nakajima K, Matsuo S, Bamba Y, Saito S. Impact of calibration methods for color medical displays on interpreting brain SPECT images. Med Phys. 2019; 46: 2580-2588. (JIF: 2.884) </li>
+        <li>Kita A, Onoguchi M, <u>Shibutani T</u>, Horita H, Oku Y, Kashiwaya S, Isaka M, Saitou M. Standardization of the specific binding ratio in [<sup>123</sup>I] FP-CIT SPECT: study by striatum phantom. Nucl Med Commun. 2019; 40: 484-490. (JIF: 1.495) </li>
+        <li>Yoneyama H, Nakajima K, Taki J, Wakabayashi H, Matsuo S, Konishi T, Okuda K, <u>Shibutani T</u>, Onoguchi M, Kinuya S. Ability of artificial intelligence to diagnose coronary artery stenosis using hybrid images of coronary computed tomography angiography and myocardial perfusion SPECT. Eur J Hybrid Imaging. 2019; 3:4. </li>
+        <li>Tsuboi K, Nagaki A, <u>Shibutani T</u>, Onoguchi M. Optimal choice of OSEM and SD reconstruction algorithms in CZT SPECT for hypertrophic cardiomyopathy patients. J Nucl Cardiol. 2021; 28: 236-244. (JIF: 4.011) </li>
+        <li>Kita A, Onoguchi M, <u>Shibutani T</u>, Sugimoto K, Kosaka N, Adachi T, Kimura H. Influence of myocardial count on phase dyssynchrony analysis of gated myocardial perfusion single-photon emission computed tomography. Nucl Med Commun. 2019; 40: 124-30. (JIF: 1.495) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Yoneyama H, Konishi T, Matsuo S, Nakajima K. Characteristics of iodine-123 IQ-SPECT/CT imaging compared with conventional SPECT/CT. Ann Nucl Med. 2019; 33: 103-111. (JIF: 1.656) </li>
+        <li><u>Shibutani T</u>, Nakajima K, Wakabayashi H, Mori H, Matsuo S, Yoneyama H, Konishi T, Okuda K, Onoguchi M, Kinuya S. Accuracy of an artificial neural network for detecting a regional abnormality in myocardial perfusion SPECT. Ann Nucl Med. 2019; 33: 86-92. (JIF: 1.656) </li>
+        <li>Wakabayashi H, Taki J, Inaki A, Hiromasa T, Yamase T, Akatani N, Okuda K, <u>Shibutani T</u>, Shiba K, Kinuya S. Prognostic Value of Early Evaluation of Left Ventricular Dyssynchrony After Myocardial Infarction. Mol Imaging Biol. 2019; 21: 654-659. (JIF: 3.608) </li>
+        <li>Ishihara M, Onoguchi M, <u>Shibutani T</u>. An exploratory study of washout rate analysis for thallium-201 single-photon emission computed tomography myocardial perfusion imaging using cadmium-zinc-telluride detectors. Mol Imaging. 2018; 17: 1536012118782322. (JIF: 1.479) </li>
+        <li>Nakamura M, Onoguchi M, <u>Shibutani T</u>. Assessment of Left Ventricular Dyssynchrony using Gated Myocardial Perfusion SPECT in Cardiac Resynchronization Therapy. Int J Cardiovasc Res. 2018; 7: 2. (JIF: 0.38) </li>
+        <li>Wakabayashi H, Taki J, Inaki A, Hiromasa T, Okuda K, <u>Shibutani T</u>, Shiba K, Kinuya S. Quantification of Myocardial Perfusion Defect Size in Rats: Comparison between Quantitative Perfusion SPECT and Autoradiography. Mol Imaging Biol. 2018; 20: 544-550. (JIF: 3.466) </li>
+        <li>Nakaya K, Onoguchi M, Nishimura Y, Kiso K, Otsuka H, Nouno Y, <u> Shibutani T</u>, Yasuda E. Comparison between prone and upright imaging of the inferior wall using <sup>201</sup>TlCl myocardial perfusion single photon emission computed tomography. J Nucl Med Technol. 2017; 45: 304-308. </li>
+        <li>Nakajima K, Okuda K, Momose M, Matsuo S, Kondo C, Sarai M, <u> Shibutani T</u>, Onoguchi M, Shimizu T, Vija AH. IQ·SPECT technology and its clinical applications using multicenter normal databases. Ann Nucl Med. 2017; 31: 649-659. (JIF: 1.467) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Miyamoto N, Yamamoto Y, Kinuya S. Influence of Attenuation Correction by Brain Perfusion SPECT/CT Using a Simulated Abnormal Bone Structure: Comparison Between Chang and CT Methods. J Nucl Med Technol. 2017; 45: 208-213. </li>
+        <li>Nakaya K, Onoguchi M, Nishimura Y, Kiso K, Otsuka H, Nouno Y, <u> Shibutani T</u>, Yasuda E. Criteria for the addition of prone imaging to myocardial perfusion single-photon emission computed tomography for inferior wall. Nucl Med Commun. 2017; 38: 748-755. (JIF: 1.472) </li>
+        <li>Ishihara M, Onoguchi M, Taniguchi Y, <u>Shibutani T</u>. Comparison of conventional and cadmium-zinc-telluride single-photon emission computed tomography for analysis of thallium-201 myocardial perfusion imaging: an exploratory study in normal databases for different ethnicities. Int J Cardiovasc Imaging. 2017; 33: 2057-2066. (JIF: 1.896) </li>
+        <li>Yoneyama H, <u>Shibutani T</u>, Konishi T, Mizutani A, Ryosuke H, Onoguchi M, Okuda K, Matsuo S, Nakajima K, Kinuya S. Validation of Left Ventricular Ejection Fraction with the IQ•SPECT System in Small-Heart Patients. J Nucl Med Technol. 2017; 45: 201-207. (JIF: 1.3) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Yoneyama H, Konishi T, Matsuo S, Nakajima K, Kinuya S. Characteristics of single- and dual-photopeak energy window acquisitions with thallium-201 IQ-SPECT/CT system. Ann Nucl Med. 2017; 31: 529-535. (JIF: 1.467) </li>
+        <li>Konishi T, Nakajima K, Okuda K, Yoneyama H, Matsuo S, <u>Shibutani T</u>, Onoguchi M, Kinuya S. IQ-SPECT for thallium-201 myocardial perfusion imaging: effect of normal databases on quantification. Ann Nucl Med. 2017; 31: 454-461. (JIF: 1.467) </li>
+        <li>Okuda K, Nakajima K, Matsuo S, Kashiwaya S, Yoneyama H, <u>Shibutani T</u>, Onoguchi M, Hashimoto M, Kinuya S. Comparison of diagnostic performance of four software packages for phase dyssynchrony analysis in gated myocardial perfusion SPECT. EJNMMI Res. 2017; 7: 27. (JIF: 1.761) </li>
+        <li>Chono T, Onoguchi M, <u>Shibutani T</u>, Hashimoto A, Nakata T, Yama N, Tsuchihashi K, Hatakenaka M. Improvement in automated quantitation of myocardial perfusion abnormality by using iterative reconstruction image in combination with resolution recovery, attenuation and scatter corrections for the detection of coronary artery disease. Ann Nucl Med. 2017; 31: 181-189. (JIF: 1.467) </li>
+        <li>Ishihara M, Taniguchi Y, Onoguchi M, <u>Shibutani T</u>. Optimal thallium-201 dose in cadmium-zinc-telluride SPECT myocardial perfusion imaging. J Nucl Cardiol. 2018; 25: 947-954. (JIF: 2.942) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Katafuchi T, Kinuya S. Development of a myocardial phantom and analysis system toward the standardization of myocardial SPECT image across institutions. Ann Nucl Med 2016; 30: 699-707. (JIF: 1.467) </li>
+        <li>Onoguchi M, Konishi T, <u>Shibutani T</u>, Matsuo S, Nakajima K. Technical aspects Image reconstruction. Ann Nucl Cardiol 2016: 2(1); 68-72. </li>
+        <li>Matsuo S, Mochizuki T, Takeda S, <u>Shibutani T</u>, Onoguchi M, Nakajima K, Okuda K, Takeuchi H, Hayakawa K, Kinuya S. Cardiac time-of-flight PET for evaluating myocardial perfusion with <sup>13</sup>N-ammonia: Phantom studies for estimation of defect and heterogeneity. Ann Nucl Cardiol. 2016; 2: 73-78. </li>
+        <li>Suda M, Kiriyama T, Ishihara K, Onoguchi M, Kobayashi Y, Sakurai M, <u> Shibutani T</u>, Kumita S. The high matrix acquisition technique for imaging of atherosclerotic plaque inflammation in fluorine-18 fluorodeoxyglucose positron emission tomography/computed tomography with time-of-flight: Phantom study. J Nucl Cardiol. 2017; 24: 1161-1170. (JIF: 2.942) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Yamada T, Kamida H, Kunishita K, Hayashi Y, Nakajima T, Kinuya S. Optimization of the pre-filter parameters by myocardial perfusion SPECT: The formulation of flowchart. Australas Phys Eng Sci Med. 2016; 39: 571-581. (JIF: 0.882) </li>
+        <li>Ichihara H, Onoguchi M, Kikuchi A, <u>Shibutani T</u>. Evaluation of the subtraction method utilizing posterior view for improving visibility of the sentinel lymph nodes for lymphoscintigraphy in breast cancer. Ann Nucl Med. 2016; 30: 298-308. (JIF: 1.677) </li>
+        <li><u>Shibutani T</u>, Onoguchi M, Noguchi A, Yamada T, Tsuchihashi H, Nakajima T, Kinuya S. Reproducibility Between Brain Uptake Ratio Using Anatomic Standardization and Patlak-Plot Methods. J Nucl Med Technol. 2015; 43: 261-6. </li>
+    </ol>
+    <h2>和文論文（計13編　筆頭4編） </h2>
+    <ol>
+        <li>瀬川恵子，<u>澁谷孝行</u>，山口裕祐，市川肇，小西貴広，米山寛人，中嶋 憲一．<sup>99m</sup>Tc心筋血流SPECTにおけるFBP法補正なし正常データベースの逐次近似法への適用．日放技学誌．2025; 81(4)．</li>
+        <li>小野口昌久，<u>澁谷孝行</u>，多々見鈴果，米山寛人，中嶋憲一．<sup>99m</sup>Tc心電図同期心筋血流SPECTにおける位相解析法の影響因子Journal of Wellness and Health Care 2023；47：1-10.</li>
+        <li>加藤豊大，市川肇，三輪建太，奥田光一，<u>澁谷孝行</u>，長木昭男，對間博之．国内の核医学検査における追加撮像の実態調査．日放技学誌．2020；76：285-294．</li>
+        <li>北章延，杉本勝也，小坂信之，小野口昌久，<u>澁谷孝行</u>，安達登志樹．骨 SPECT 検査の定量値算出における放射能量実測手技の省略化．日放技学誌．2019；75：1158-1164．</li>
+        <li>塩川暁大，小野口昌久，<u>澁谷孝行</u>，前田優汰，米山寛人，小西貴広，若林大志．ドパミントランスポータSPECT における各補正法が specific binding ratioおよびstandardized uptake value に及ぼす影響．日放技学誌．2019；75：638-645．</li>
+        <li>中舎幸司，小野口昌久，西村圭弘，武藤祐衣，松浦佳苗，堀祐樹，濃野祥史，<u>澁谷孝行</u>．心筋血流SPECT体位における胸郭部の動きから見た呼吸性体動の検討．日本放射線技師教育学会論文誌．2018；10：3-11．</li>
+        <li>梅木拓哉，<u>澁谷孝行</u>，小西慎介，山口裕祐．股関節単純X線画像における大腿骨頭計測の精度向上を目的とした拡大率補正法の考案．日本診療放射線技師会誌．2017；64：1537-42．</li>
+        <li>伊東利宗，小野口昌久，<u>澁谷孝行</u>．<sup>123</sup>I-MIBG心筋シンチグラフィPlanar撮像における非線形拡散処理による短時間収集の適応化．核医学技術．2016；36：475-484．</li>
+        <li><u>澁谷孝行</u>，小野口昌久，船山理沙，中嶋憲一, 松尾信郎，米山寛人，小西貴広，絹谷清剛．<sup>201</sup>Tl心筋SPECTにおける多焦点コリメータを用いた散乱・減弱補正と画像再構成条件の最適化．日放技学誌．2015；71：1103-1112．</li>
+        <li><u>澁谷孝行</u>，瀬戸嶋剛，植田克， 髙田勝巳，奥野貞一，小野口昌久，中島直，藤澤一朗．医用画像表示用モニタ品質管理の現状と問題点．日放技学誌．2015；71：356-361．</li>
+        <li><u>澁谷孝行</u>，對間博之，清水敬二，花岡宏平，松田恵雄，神宮司公二，櫻井実，加藤誠二，武田悟，桑野忠雄，藤澤一朗，竹花一哉，奥真也．JJ1017との整合性を確保した核医学領域拡張検査コードの有用性．核医学．2013；50(1)：1-11．</li>
+        <li>宇戸朋之，石山成浩，木村紘也，葛城由士，増成豊和，<u>澁谷孝行</u>，石木浩一，中西健，穴井達弥，隅田茂，森松貴志，宮野英人．多施設での胸腹部一般撮影線量と画質の比較．日放技学誌．2011；67(2)：152-161．</li>
+        <li><u>澁谷孝行</u>，村川圭三，木村徹，竹中賢一，松浦基夫，濱口雅夫，森本光雄，倉橋達人，西野誠記，福本真司，桑野忠雄．ガンマカメラにおける日常点検の現状．核医学技術．2010；30：193-201．</li>
+    </ol>
+    <div style="font-size: 1.2em;margin-bottom: 50px;">詳細は 
+    <a href="https://researchmap.jp/kanazawa_shibu/published_papers" target="_blank" style="font-size: 1.2em; margin-left: 5px;">Research map</a>
+    </div>
+</body>
+</html>
