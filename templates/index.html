@@ -34,11 +34,11 @@
     }
     .header-box {
         display: flex;
-        flex-direction: row
-        align-items: center
+        flex-direction: row;
+        align-items: center;
         justify-content: flex-start;
         padding: 6px;
-        background-color: white /* ボックス背景色 */
+        background-color: white; /* ボックス背景色 */
         border-radius: 8px; /* ボックスの角丸 */
         max-width: 1200px; /* ボックスの幅制限 */
         margin: auto; /* 中央揃え */
@@ -166,15 +166,40 @@
         header {
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
-        .logo {
+        .header-box{
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .header-box .logo {
             margin-right: 0;
+            margin-bottom: 8px;
+            width: 80px;
         }
         nav ul {
             flex-direction: column;
+            text-align: center;
         }
         nav ul li {
-            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+        }
+        nav ul li a{
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+        }
+        .submenu{
+            position: static;
+            width: 100%;
+            display: none;
+        }
+        .publication-menu:hover .submenu,
+        .activity-menu:hover .submenu{
+            display: block;
         }
     }
 
