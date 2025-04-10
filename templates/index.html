@@ -194,11 +194,17 @@
     .header-box .lab-name {
         font-size: 1em;
     }
+    nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    }
     nav ul {
         flex-direction: row !important;  /* ← ナビゲーションも横並びに固定 */
+        flex-wrap: nowrap !important;
+        overflow-x: auto; /* 横スクロールも可能に */
     }
     nav ul li {
-        margin-bottom: 0 !important;
+        margin: 0 2px !important;
     }
 } /* ← ★この閉じ括弧が超重要！ */
 
