@@ -42,6 +42,7 @@
         border-radius: 8px; /* ボックスの角丸 */
         max-width: 1200px; /* ボックスの幅制限 */
         margin: auto; /* 中央揃え */
+        flex-wrap: nowrap; /* ← PCでは折り返さない */
     }
 
     .header-box .logo {
@@ -89,12 +90,12 @@
     }
 
     nav ul {
-        list-style: none;
+        display: flex;
+        flex-direction: row; /* ← 明示的に横並びにする */
+        justify-content: center;
+        align-items: center;
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center; /* 垂直方向中央揃え */
     }
 
     nav ul li {
@@ -163,45 +164,49 @@
     }
     /* レスポンシブ対応 */
     @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .header-box{
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .header-box .logo {
-            margin-right: 0;
-            margin-bottom: 8px;
-            width: 80px;
-        }
-        nav ul {
-            flex-direction: column;
-            text-align: center;
-        }
-        nav ul li {
-            display: block;
-            width: 100%;
-        }
-        nav ul li a{
-            display: block;
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-        }
-        .submenu{
-            position: static;
-            width: 100%;
-            display: none;
-        }
-        .publication-menu:hover .submenu,
-        .activity-menu:hover .submenu{
-            display: block;
-        }
+    header {
+        flex-direction: column;
+        align-items: center;
     }
+    .header-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    .header-box .logo {
+        width: 80px;
+        margin: 0 auto 10px;
+    }
+    .header-box .title-container {
+        text-align: center;
+    }
+    .header-box .main-title,
+    .header-box .subtitle,
+    .header-box .lab-name {
+        font-size: 1em;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    nav ul li {
+        margin-bottom: 10px;
+    }
+} /* ← ★この閉じ括弧が超重要！ */
+
+/* これらはPC表示用として必須 */
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 2px;
+}
+
 
     /* メインコンテンツ */
     body {
@@ -210,9 +215,8 @@
         font-family: "Roboto", 游ゴシック;
         line-height: 1.4;
         padding-top: 140px;
-        white-space: nowrap; /* 改行を防止 */
-        overflow-x: scroll; /* 横スクロールを許可 */
-        overflow-Y: scroll; /* 縦スクロールを許可 */
+        overflow-x: hidden; /* 横スクロールを許可 */
+        overflow-Y: Auto; /* 縦スクロールを許可 */
     }
 
     main {
