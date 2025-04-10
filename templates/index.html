@@ -168,16 +168,24 @@
         flex-direction: column;
         align-items: center;
     }
+    @media (max-width: 768px) {
     .header-box {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        flex-wrap: wrap;
+        flex-direction: row !important;
+        align-items: center !important;
+        text-align: left !important;
+        flex-wrap: nowrap !important;
     }
+
+    .header-box .title-container {
+        text-align: left !important;
+    }
+
     .header-box .logo {
-        width: 80px;
-        margin: 0 auto 10px;
+        margin: 0 16px 0 0 !important;
+        width: 100px !important;
     }
+}
+
     .header-box .title-container {
         text-align: center;
     }
@@ -187,10 +195,10 @@
         font-size: 1em;
     }
     nav ul {
-        flex-direction: column;
+        flex-direction: row !important;  /* ← ナビゲーションも横並びに固定 */
     }
     nav ul li {
-        margin-bottom: 10px;
+        margin-bottom: 0 !important;
     }
 } /* ← ★この閉じ括弧が超重要！ */
 
@@ -215,8 +223,9 @@ nav ul li {
         font-family: "Roboto", 游ゴシック;
         line-height: 1.4;
         padding-top: 140px;
-        overflow-x: hidden; /* 横スクロールを許可 */
-        overflow-Y: Auto; /* 縦スクロールを許可 */
+        white-space: nowrap;     /* ← 横に折り返さない */
+        overflow-x: auto;         /* ← 横スクロールを許可 */
+        overflow-y: auto;         /* ← 縦スクロールもOK */
     }
 
     main {
